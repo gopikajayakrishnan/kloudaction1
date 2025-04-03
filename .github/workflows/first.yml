@@ -6,6 +6,8 @@ jobs:  # Corrected from "job" to "jobs"
     myfirstjob:
         runs-on: ubuntu-latest
         steps:
+            - name: Checkout
+              uses: actions/checkout@v4
             - name: Welcome message
               run: echo "my first job"
             - name: List files
