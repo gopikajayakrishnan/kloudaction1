@@ -1,36 +1,34 @@
-name: Node.js Build and Test
+name: Cowsay Workflow
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  mynodejsjob:
+  cowsay-job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-
-      - name: Install dependencies, build, and test
+      - name: Set up cowsay
         run: |
-          # Update npm to a version compatible with Node.js 14
-          npm install -g npm@6
+          sudo apt update
+          sudo apt install -y cowsay
 
-          # Install project dependencies
-          npm install
+      - name: Display a welcome message with cowsay
+        run: |
+          echo "Welcome to the Cowsay Workflow!" | cowsay
 
-          # Build the project
-          npm run build
+      - name: Show a motivational message
+        run: |
+          echo "Keep going, you're doing great!" | cowsay
 
-          # Run tests
-          npm test
-
-          # Display success message
-          echo "Build and tests completed successfully!"
+      - name: Display a final message
+        run: |
+          echo "Goodbye! Have a wonderful day!" | cowsay
