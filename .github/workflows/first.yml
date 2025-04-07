@@ -1,16 +1,15 @@
-name: nodejs build and test
+name: Node.js Build and Test
 
 on:
   push:
     branches:
       - main
-      
+
 jobs:
   mynodejsjob:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout Repo
         uses: actions/checkout@v3
 
@@ -18,13 +17,19 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '14'
-      
-      - name: Install dep build and test
+
+      - name: Install dependencies, build, and test
         run: |
-         npm install -g npm@latest
-         npm install
-         npm run build 
-         npm test
-         echo "Build and tests completed successfully!"
+          # Update npm to the latest version
+          npm install -g npm@latest
 
+          # Install project dependencies
+          npm install
 
+          # Build the project
+          npm run build
+
+          # Run tests
+          npm test
+
+          # Display success message
