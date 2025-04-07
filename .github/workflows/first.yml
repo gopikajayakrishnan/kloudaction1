@@ -1,16 +1,30 @@
-name: my first workflow
+name: nodejs build and test
 
-on: push
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  mynodejsjob:
+    runs-on: ubuntu-latest
 
-jobs:  # Corrected from "job" to "jobs"
-    myfirstjob:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-            - name: Welcome message
-              run: echo "my first job"
-            - name: List files
-              run: ls
-            - name: Read file
-              run: cat README.md  # Corrected command
+    steps:
+
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      
+      - name: Install dep build and test
+        run: |
+         npm install -g npm@latest
+         npm install
+         npm run build 
+         npm test
+         echo "Build and tests completed successfully!"
+
+
