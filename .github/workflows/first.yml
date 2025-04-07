@@ -20,8 +20,8 @@ jobs:
 
       - name: Install dependencies, build, and test
         run: |
-          # Update npm to the latest version
-          npm install -g npm@latest
+          # Update npm to a version compatible with Node.js 14
+          npm install -g npm@6
 
           # Install project dependencies
           npm install
@@ -33,3 +33,4 @@ jobs:
           npm test
 
           # Display success message
+          echo "Build and tests completed successfully!"
